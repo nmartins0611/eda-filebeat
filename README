@@ -15,6 +15,10 @@ filebeat.yml ---- >> Config for Filebeat which outputs to kafka
 http_rulebook.yml ---->> ansible-rulebook for eda to monitor kafka for a http stopped message
 http_restart.yml ---->> ansible-playbook that is triggered to restart the service
      
+Message Examples:
+
+{"@timestamp":"2023-03-28T13:04:02.017Z","@metadata":{"beat":"filebeat","type":"_doc","version":"7.17.8"},"event":{"kind":"event","created":"2023-03-28T13:04:10.717Z"},"host":{"containerized":false,"ip":["192.168.11.60","fe80::5054:ff:fe2a:b4f4"],"mac":["52:54:00:2a:b4:f4"],"id":"e7c4323aeffe41b6af44f2cbe53a3258","hostname":"webserver01.prometheus.io","name":"webserver01.prometheus.io","architecture":"x86_64","os":{"kernel":"4.18.0-425.3.1.el8.x86_64","codename":"Ootpa","type":"linux","platform":"rhel","version":"8.7 (Ootpa)","family":"redhat","name":"Red Hat Enterprise Linux"}},"systemd":{"unit":"crond.service","cgroup":"/system.slice/crond.service","slice":"system.slice","transport":"syslog","invocation_id":"ab46c849286547b69620a951945f1590"},"agent":{"ephemeral_id":"a4621f6c-7130-4957-bae6-a4f0cd415f7f","id":"b90d697a-81de-4137-9cda-5c46675bdcf9","name":"webserver01.prometheus.io","type":"filebeat","version":"7.17.8","hostname":"webserver01.prometheus.io"},"user":{"id":"0","group":{"id":"0"}},"process":{"pid":2179,"command_line":"/usr/sbin/anacron -s","args":["/usr/sbin/anacron","-s"],"args_count":2},"journald":{"process":{"name":"anacron","executable":"/usr/sbin/anacron","command_line":"/usr/sbin/anacron -s","capabilities":"1ffffffffff"},"host":{"boot_id":"c4a81aec64094870ab4b506add480a16"},"pid":2179,"custom":{"selinux_context":"system_u:system_r:system_cronjob_t:s0-s0:c0.c1023"},"uid":0,"gid":0},"syslog":{"identifier":"anacron","pid":2179,"facility":9,"priority":5},"log":{"syslog":{"priority":5,"facility":{"code":9}}},"input":{"type":"journald"},"ecs":{"version":"1.12.0"},"message":"Job `cron.weekly' terminated"}
+     
 
 ## Kafka Container Setup ##
 
