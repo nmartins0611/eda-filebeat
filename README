@@ -2,6 +2,14 @@ This example uses filebeat from elastic to forward journald entries to Kafka. On
 
 
 filebeat - filebeat-7.17.8
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.8-linux-x86_64.tar.gz
+tar -xvf filebeat-7.17.8-linux-x86_64.tar.gz filebeat-7.17.8-linux-x86_64/
+mv filebeat.yml filebeat.yml.bk
+create new filebeat.yml
+
+./filebeat
+
+
 
 filebeat.yml ---- >> Config for Filebeat which outputs to kafka
 http_rulebook.yml ---->> ansible-rulebook for eda to monitor kafka for a http stopped message
