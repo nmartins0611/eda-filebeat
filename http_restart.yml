@@ -1,0 +1,17 @@
+---
+- name: Restarting Webserver
+  hosts: webserver01
+  gather_facts: false
+  become: true
+  become_user: root
+  become_method: sudo
+  #var:
+  # problem_server:
+
+  tasks:
+
+   - name: restarting httpd
+     service:
+       name: httpd
+       state: restarted
+     ignore_errors: true
