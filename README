@@ -1,7 +1,9 @@
 This example uses filebeat from elastic to forward journald entries to Kafka. Once the content is in Kafka we can use ansible-rulebook to trigger actions from the messages. 
 
 filebeat.yml ---- >> Config for Filebeat which outputs to kafka
-
+http_rulebook.yml ---->> ansible-rulebook for eda to monitor kafka for a http stopped message
+http_restart.yml ---->> ansible-playbook that is triggered to restart the service
+     
 
 ## Kafka Container Setup ##
 
