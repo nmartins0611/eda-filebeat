@@ -40,4 +40,23 @@ podman run -d --name=broker --privileged \
      -p 9092:9092 \
      -p 29092:29029 \
      docker.io/confluentinc/cp-kafka:7.0.1 
+     
+     
+## Setup Kafka Topic 
+
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic YOUR_TOPIC
+
+# Test 
+kafka-console-producer.sh --topic YOUR_TOPIC --bootstrap-server localhost:9092
+
+# View Message Q
+kafka-console-consumer.sh --topic YOUR_TOPIC --from-beginning --bootstrap-server localhost:9092
+
+# Delete 
+
+kafka-topics.sh --delete --topic network
+
+
+
+
 
