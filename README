@@ -1,0 +1,26 @@
+This example uses filebeat from elastic to forward journald entries to Kafka. Once the content is in Kafka we can use ansible-rulebook to trigger actions from the messages. 
+
+filebeat.yml ---- >> Config for Filebeat which outputs to kafka
+
+
+## Kafka Container Setup ##
+
+# # Create Zookeeper
+podman run -d --name=zookeeper --privileged \
+     -e ZOOKEEPER_TICK_TIME=2000 \
+     -e ZOOKEEPER_CLIENT_PORT=2182 \
+     -p 2181:2181 \
+     docker.io/confluentinc/cp-zookeeper:7.0.1 
+
+# ## Create Kafka 
+podman run -d --name=broker --privileged \
+     -e KAFKA_BROKER_ID=1 \
+     -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 \
+     -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://broker:9092,PLAINTEXT_INTERNAL://broker:29092 \
+     -e KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1 \
+     -e KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT \
+     -e KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1 \
+     -p 9092:9092 \
+     -p 29092:29029 \
+     docker.io/confluentinc/cp-kafka:7.0.1 
+
